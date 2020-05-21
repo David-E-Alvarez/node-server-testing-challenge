@@ -31,13 +31,11 @@ describe('server.js', () => {
                 expect(res.body.length).toBe(3);
             })
     })
-    it('should log users', () => {
+    it('should check if array has specified users', () => {
+        const expected = ["david"];
         return request(server).get('/users')
             .then(res => {
-                res.body.forEach(user => {
-                    console.log(user)
-                })
-            })
-        
+                expect(res.body).toEqual(expect.arrayContaining(expected));
+            })        
     })
 })
